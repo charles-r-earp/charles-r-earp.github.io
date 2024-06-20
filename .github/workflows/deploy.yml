@@ -32,9 +32,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install Dioxus
-      - run: cargo install dioxus-cli
+        run: cargo install dioxus-cli
       - name: Build
-      - run: dx build
+        run: dx build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
