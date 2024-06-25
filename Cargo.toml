@@ -3,13 +3,13 @@ name = "charles-r-earp-github-io"
 version = "0.1.0"
 authors = ["charles-r-earp <charles.r.earp@gmail.com>"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+publish = false
 
 [dependencies]
-
 dioxus = { version = "0.5", features = ["web", "router"] }
 
 # Debug
 tracing = "0.1.40"
 dioxus-logger = "0.5.0"
+derive_more = "0.99.18"
+dioxus-free-icons = { version = "0.8.6", features = ["feather", "font-awesome-brands"] }
