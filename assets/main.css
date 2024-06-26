@@ -16,6 +16,10 @@ a {
     all: unset;
 }
 
+button {
+    all: unset;
+}
+
 .hover {
     color: var(--color);
 }
@@ -33,6 +37,15 @@ a {
 }
 
 @keyframes load {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes load2 {
     0% {
         opacity: 0;
     }
