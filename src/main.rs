@@ -7,27 +7,6 @@ use dioxus_free_icons::{
 };
 use tracing::Level;
 
-/*
-#[rustfmt::skip]
-#[derive(Clone, Routable, Debug, PartialEq)]
-enum Route {
-    #[route("/education")]
-    Education {},
-    #[route("/certifications")]
-    Certifications {},
-    #[route("/experience")]
-    Experience {},
-    #[route("/projects")]
-    Projects {},
-    #[route("/contributions")]
-    Contributions {},
-    #[route("/")]
-    #[redirect("/:_path", |_path: String| Route::Home {})]
-    Home {}
-}
-
-*/
-
 #[derive(Clone, Copy, PartialEq, Debug)]
 enum Page {
     About,
@@ -46,7 +25,7 @@ fn main() {
 
 fn App() -> Element {
     let page = use_signal(|| Page::About);
-    let mut animation = use_signal(|| false);
+    let animation = use_signal(|| false);
     let (content, background_image) = match page() {
         Page::About => about(),
         Page::Education => education(),
@@ -220,7 +199,60 @@ fn ContactIcon<T: IconShape + Clone + PartialEq + 'static>(props: ContactIconPro
 fn about() -> (Element, &'static str) {
     // https://www.pixelstalk.net/wp-content/uploads/2016/11/Earth-From-Space-Wallpapers-HD-Desktop.jpg"
     let background_image = "Earth-From-Space-HD-Backgrounds.jpg";
-    let content = rsx! {};
+    let mut skills = [
+        "Mechanical Assembly and Maintenance",
+        "HW / SW Troubleshooting",
+        "Failure Mode Analysis",
+        "SOLIDWORKS",
+        "JavaScript",
+        "LabView",
+        "MATLAB",
+        "Python",
+        "CATIA",
+        "HTML",
+        "Rust",
+        "CSS",
+        "C++",
+    ];
+    skills.sort_by_key(|x| x.len());
+    let content = rsx! {
+        div {
+            style: "
+                display: flex;
+                flex-direction: column;
+                border-width: 2px;
+                border-radius: 10px;
+                color: var(--color);
+                padding: 10px;
+            ",
+            p {
+                style: "color: var(--color); font-size: 2em; font-weight: bold;",
+                "Hello! My name is Charles Earp."
+            }
+            p {
+                style: "color: var(--color); font-size: 2em;",
+                "I'm an Engineer interested in robotics, machine learning, and analytical problem solving."
+            }
+            div {
+                style: "display: flex; justify-content: space-around; flex-wrap: wrap;",
+                for skill in skills.iter().rev() {
+                    div {
+                        style: "
+                            color: var(--color);
+                            border-width: 2px;
+                            border-radius: 10px;
+                            border-style: solid;
+                            background-color: var(--background-color);
+                            font-size: 2em;
+                            margin: 10px;
+                            padding: 10px;
+                        ",
+                        {skill}
+                    }
+                }
+            }
+        }
+    };
     (content, background_image)
 }
 
